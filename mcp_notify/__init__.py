@@ -60,9 +60,9 @@ def wework_send_image(
 )
 def wework_send_news(
     title: str = Field(description="标题，不超过128个字节"),
-    description: str = Field("", description="描述，不超过512个字节"),
     url: str = Field(description="跳转链接，必填"),
     picurl: str = Field("", description="图片url"),
+    description: str = Field("", description="描述，不超过512个字节"),
     bot_key: str = Field(WEWORK_BOT_KEY, description="机器人key，uuid格式"),
 ):
     res = requests.post(

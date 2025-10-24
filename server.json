@@ -17,7 +17,7 @@
     },
     {
       "registryType": "oci",
-      "identifier": "ghcr.io/aahl/mcp-notify:latest",
+      "identifier": "ghcr.io/aahl/mcp-notify:main",
       "transport": {"type": "stdio"}
     }
   ]
