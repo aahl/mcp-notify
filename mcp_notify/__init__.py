@@ -8,6 +8,8 @@ from fastmcp import FastMCP
 from pydantic import Field
 from starlette.middleware.cors import CORSMiddleware
 
+from .telegram import add_telegram_tools
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -85,6 +87,8 @@ def wework_send_news(
 
 
 def main():
+    add_telegram_tools(mcp)
+
     mode = os.getenv("TRANSPORT")
     port = int(os.getenv("PORT", 0)) or 80
     parser = argparse.ArgumentParser(description="Notify MCP Server")

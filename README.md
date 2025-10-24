@@ -2,7 +2,7 @@
 
 <!-- mcp-name: io.github.aahl/mcp-notify -->
 
-提供消息推送的 MCP (Model Context Protocol) 服务器
+提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信群机器人、Telegram
 
 
 ## 安装
@@ -15,7 +15,10 @@
       "command": "uvx",
       "args": ["mcp-notify"],
       "env": {
-        "WEWORK_BOT_KEY": "your-wework-bot-key" # 企业微信群机器人key
+        "WEWORK_BOT_KEY": "your-wework-bot-key", # 企业微信群机器人key
+        "TELEGRAM_DEFAULT_CHAT": "-10000000000", # Telegram Chat ID
+        "TELEGRAM_BOT_TOKEN": "123456789:ABCDE", # Telegram Bot Token
+        "TELEGRAM_BASE_URL": "https://api.telegram.org", # Optional
       }
     }
   }
