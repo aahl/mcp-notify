@@ -1,0 +1,21 @@
+[project]
+name = "mcp-notify"
+version = "0.1.0"
+description = "MCP Server for notify"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["notify", "telegram", "weixin", "wework", "mcp", "llm"]
+license = { text = "MIT" }
+dependencies = [
+    "fastmcp>=2.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/aahl/mcp-notify"
+
+[project.scripts]
+mcp-notify = "mcp_notify:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

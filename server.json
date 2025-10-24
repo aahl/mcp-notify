@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.aahl/mcp-notify",
+  "title": "Notify MCP Server",
+  "description": "MCP Server for notify",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/aahl/mcp-notify",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "mcp-notify",
+      "version": "0.1.0",
+      "transport": {"type": "stdio"}
+    },
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/aahl/mcp-notify:latest",
+      "transport": {"type": "stdio"}
+    }
+  ]
+}
