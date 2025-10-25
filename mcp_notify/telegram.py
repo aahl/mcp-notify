@@ -57,7 +57,7 @@ Please note:
 """
 
 
-def add_telegram_tools(mcp: FastMCP):
+def add_tools(mcp: FastMCP):
     bot = Bot(
         TELEGRAM_BOT_TOKEN,
         base_url=f"{TELEGRAM_BASE_URL}/bot",
