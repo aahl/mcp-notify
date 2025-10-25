@@ -12,11 +12,12 @@ from . import (
 _LOGGER = logging.getLogger(__name__)
 
 
-def main():
-    mcp = FastMCP(name="mcp-notify")
-    wework.add_tools(mcp)
-    telegram.add_tools(mcp)
+mcp = FastMCP(name="mcp-notify")
+wework.add_tools(mcp)
+telegram.add_tools(mcp)
 
+
+def main():
     mode = os.getenv("TRANSPORT")
     port = int(os.getenv("PORT", 0)) or 80
     parser = argparse.ArgumentParser(description="Notify MCP Server")
