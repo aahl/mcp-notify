@@ -3,7 +3,7 @@
   "name": "io.github.aahl/mcp-notify",
   "title": "Notify MCP Server",
   "description": "MCP Server for notify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/aahl/mcp-notify",
     "source": "github"
@@ -12,7 +12,7 @@
     {
       "registryType": "pypi",
       "identifier": "mcp-notify",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "transport": {"type": "stdio"}
     },
     {
