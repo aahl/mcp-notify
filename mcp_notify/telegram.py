@@ -58,6 +58,9 @@ Please note:
 
 
 def add_tools(mcp: FastMCP):
+    if not TELEGRAM_BOT_TOKEN:
+        return
+
     bot = Bot(
         TELEGRAM_BOT_TOKEN,
         base_url=f"{TELEGRAM_BASE_URL}/bot",
