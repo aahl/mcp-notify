@@ -58,14 +58,11 @@ Please note:
 
 
 def add_tools(mcp: FastMCP):
-    if not TELEGRAM_BOT_TOKEN:
-        return
-
     bot = Bot(
         TELEGRAM_BOT_TOKEN,
         base_url=f"{TELEGRAM_BASE_URL}/bot",
         base_file_url=f"{TELEGRAM_BASE_URL}/file/bot",
-    )
+    ) if TELEGRAM_BOT_TOKEN else None
 
 
     @mcp.tool(
@@ -75,11 +72,15 @@ def add_tools(mcp: FastMCP):
         text: str = Field(description="Text of the message to be sent, 1-4096 characters after entities parsing"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         parse_mode: str = Field("", description=f"Mode for parsing entities in the message text. [text/MarkdownV2]"),
+        reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
+        if not bot:
+            return "Please set the `TELEGRAM_BOT_TOKEN` environment variable"
         res = await bot.send_message(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             text=text,
             parse_mode=parse_mode if parse_mode in [TELEGRAM_MARKDOWN_V2] else None,
+            reply_to_message_id=reply_to_message_id or None,
         )
         return res.to_json()
 
@@ -92,12 +93,14 @@ def add_tools(mcp: FastMCP):
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Photo caption, 0-1024 characters after entities parsing"),
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_photo(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             photo=photo,
             caption=caption or None,
             parse_mode=parse_mode if parse_mode in [TELEGRAM_MARKDOWN_V2] else None,
+            reply_to_message_id=reply_to_message_id or None,
         )
         return res.to_json()
 
@@ -111,6 +114,7 @@ def add_tools(mcp: FastMCP):
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Video caption, 0-1024 characters after entities parsing"),
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_video(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
@@ -118,6 +122,7 @@ def add_tools(mcp: FastMCP):
             cover=cover or None,
             caption=caption or None,
             parse_mode=parse_mode if parse_mode in [TELEGRAM_MARKDOWN_V2] else None,
+            reply_to_message_id=reply_to_message_id or None,
         )
         return res.to_json()
 
@@ -130,12 +135,14 @@ def add_tools(mcp: FastMCP):
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Audio caption, 0-1024 characters after entities parsing"),
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_audio(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             audio=audio,
             caption=caption or None,
             parse_mode=parse_mode if parse_mode in [TELEGRAM_MARKDOWN_V2] else None,
+            reply_to_message_id=reply_to_message_id or None,
         )
         return res.to_json()
 
@@ -148,12 +155,14 @@ def add_tools(mcp: FastMCP):
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="File caption, 0-1024 characters after entities parsing"),
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_document(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             document=url,
             caption=caption or None,
             parse_mode=parse_mode if parse_mode in [TELEGRAM_MARKDOWN_V2] else None,
+            reply_to_message_id=reply_to_message_id or None,
         )
         return res.to_json()
 
