@@ -66,6 +66,7 @@ def add_tools(mcp: FastMCP):
 
 
     @mcp.tool(
+        title="Telegram send text",
         description="Send text message via telegram bot",
     )
     async def tg_send_message(
@@ -86,7 +87,8 @@ def add_tools(mcp: FastMCP):
 
 
     @mcp.tool(
-        description="Send photos via telegram bot",
+        title="Telegram send photo",
+        description="Send photo via telegram bot",
     )
     async def tg_send_photo(
         photo: str = Field(description="Photo URL"),
@@ -106,6 +108,7 @@ def add_tools(mcp: FastMCP):
 
 
     @mcp.tool(
+        title="Telegram send video",
         description="Send video via telegram bot",
     )
     async def tg_send_video(
@@ -128,6 +131,7 @@ def add_tools(mcp: FastMCP):
 
 
     @mcp.tool(
+        title="Telegram send audio",
         description="Send audio via telegram bot",
     )
     async def tg_send_audio(
@@ -148,6 +152,7 @@ def add_tools(mcp: FastMCP):
 
 
     @mcp.tool(
+        title="Telegram send file",
         description="Send general files via telegram bot",
     )
     async def tg_send_file(
@@ -168,6 +173,7 @@ def add_tools(mcp: FastMCP):
 
 
     @mcp.tool(
+        title="Telegram markdown rule",
         description="Telegram supports Markdown formatting. Must use this tool before sending markdown to Telegram.",
     )
     def tg_markdown_rule():

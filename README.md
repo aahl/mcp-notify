@@ -1,20 +1,11 @@
 # 💬 Notify MCP Server
 
-[![smithery badge](https://smithery.ai/badge/@aahl/mcp-notify)](https://smithery.ai/server/@aahl/mcp-notify)
 <!-- mcp-name: io.github.aahl/mcp-notify -->
 
 提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信、钉钉机器人、Telegram、Bark
 
 
 ## 安装
-
-### Installing via Smithery
-
-To install Notify MCP Server automatically via [Smithery](https://smithery.ai/server/@aahl/mcp-notify):
-
-```bash
-npx -y @smithery/cli install @aahl/mcp-notify
-```
 
 ### 方式1: uvx
 ```yaml
@@ -41,7 +32,20 @@ npx -y @smithery/cli install @aahl/mcp-notify
 }
 ```
 
-### 方式2: Docker
+### 方式2: [Smithery](https://smithery.ai/server/@aahl/mcp-notify)
+> 需要通过OAuth授权或Smithery key
+
+```yaml
+{
+  "mcpServers": {
+    "mcp-aktools": {
+      "url": "https://server.smithery.ai/@aahl/mcp-notify/mcp" # Streamable HTTP
+    }
+  }
+}
+```
+
+### 方式3: Docker
 ```bash
 mkdir /opt/mcp-notify
 cd /opt/mcp-notify
@@ -58,6 +62,15 @@ docker-compose up -d
 }
 ```
 
+### 快速开始
+- 在线体验: [![smithery.ai](https://smithery.ai/badge/@aahl/mcp-notify)](https://smithery.ai/server/@aahl/mcp-notify)
+- 添加到 Cursor [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/zh/install-mcp?name=notify&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJtY3Atbm90aWZ5Il19)
+- 添加到 VS Code [![Install MCP Server](https://img.shields.io/badge/VS_Code-+?label=Add+MCP+Server&color=0098FF)](https://insiders.vscode.dev/redirect?url=vscode:mcp/install%3F%7B%22name%22%3A%22notify%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22mcp-notify%22%5D%7D)
+- 添加到 Cherry Studio [![Install MCP Server](https://img.shields.io/badge/Cherry_Studio-+?label=Add+MCP+Server&color=FF5F5F)](https://gitee.com/link?target=cherrystudio%3A%2F%2Fmcp%2Finstall%3Fservers%3DeyJtY3BTZXJ2ZXJzIjp7Im5vdGlmeSI6eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJtY3Atbm90aWZ5Il19fX0%3D)
+- 添加到 Claude Code, 执行命令: `claude mcp add notify -- uvx mcp-notify`
+- 添加到 OpenAI CodeX, 执行命令: `codex mcp add notify -- uvx mcp-notify`
+
+------
 
 ## 相关连接
 - [大饼报告](https://t.me/s/mcpBtc) - 基于此MCP实现的Telegram频道
