@@ -1,11 +1,20 @@
 # 💬 Notify MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@aahl/mcp-notify)](https://smithery.ai/server/@aahl/mcp-notify)
 <!-- mcp-name: io.github.aahl/mcp-notify -->
 
 提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信群机器人、企业微信应用号、Telegram
 
 
 ## 安装
+
+### Installing via Smithery
+
+To install Notify MCP Server automatically via [Smithery](https://smithery.ai/server/@aahl/mcp-notify):
+
+```bash
+npx -y @smithery/cli install @aahl/mcp-notify
+```
 
 ### 方式1: uvx
 ```yaml
