@@ -8,6 +8,7 @@ from . import (
     wework,
     telegram,
     other,
+    hass,
     util,
 )
 
@@ -18,6 +19,7 @@ mcp = FastMCP(name="mcp-notify")
 wework.add_tools(mcp)
 telegram.add_tools(mcp)
 other.add_tools(mcp)
+hass.add_tools(mcp)
 util.add_tools(mcp)
 
 

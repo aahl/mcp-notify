@@ -2,7 +2,7 @@
 
 <!-- mcp-name: io.github.aahl/mcp-notify -->
 
-提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信、钉钉机器人、Telegram、Bark、Lark、飞书
+提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信、钉钉、Telegram、Bark、Lark、飞书、Home Assistant
 
 
 ## 安装
@@ -28,6 +28,9 @@
         "TELEGRAM_DEFAULT_CHAT": "-10000000000", # Telegram Default Chat ID
         "TELEGRAM_BOT_TOKEN": "123456789:ABCDE", # Telegram Bot Token
         "TELEGRAM_BASE_URL": "https://api.telegram.org", # Optional
+        "HASS_BASE_URL": "http://homeassistant.local:8123", # Home Assistant Base URL
+        "HASS_ACCESS_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5...", # Home Assistant Long-Lived Access Token
+        "HASS_MOBILE_KEY": "mobile_app_my_iphone",          # Home Assistant Mobile Device Key, Can also be specified in the prompt
       }
     }
   }
