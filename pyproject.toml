@@ -9,7 +9,7 @@ license = { text = "MIT" }
 dependencies = [
     "fastmcp>=2.0.0",
     "cachetools>=6.2.0",
-    "python-telegram-bot[socks]>=22.0",
+    "python-telegram-bot>=22.0",
 ]
 
 [project.urls]

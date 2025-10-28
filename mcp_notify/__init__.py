@@ -6,7 +6,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from . import (
     wework,
-    telegram,
+    tgbot,
     other,
     hass,
     util,
@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 mcp = FastMCP(name="mcp-notify")
 wework.add_tools(mcp)
-telegram.add_tools(mcp)
+tgbot.add_tools(mcp)
 other.add_tools(mcp)
 hass.add_tools(mcp)
 util.add_tools(mcp)
