@@ -61,27 +61,31 @@ docker-compose up -d
 #### 企业微信应用号
 - `WEWORK_APP_CORPID`: 企业微信所属的企业ID
 - `WEWORK_APP_SECRET`: 企业微信应用的凭证密钥
-- `WEWORK_APP_AGENTID`: 企业微信应用的ID
-- `WEWORK_APP_TOUSER`: 企业微信默认接收人ID，也可以在提示词指定
-- `WEWORK_BASE_URL`: 企业微信API反代理地址，用于可信IP
+- `WEWORK_APP_AGENTID`: 企业微信应用的ID，默认: `1000002`
+- `WEWORK_APP_TOUSER`: 企业微信默认接收人ID，也可以在提示词指定，默认: `@all`
+- `WEWORK_BASE_URL`: 企业微信API反代理地址，用于可信IP，默认: `https://qyapi.weixin.qq.com`
 
 #### 钉钉群机器人
 - `DINGTALK_BOT_KEY`: 钉钉群机器人access_token
+- `DINGTALK_BASE_URL`: 钉钉API地址，默认: `https://oapi.dingtalk.com`
 
 #### 飞书/Lark群机器人
 - `FEISHU_BOT_KEY`: 飞书群机器人key，也可以在提示词指定
+- `FEISHU_BASE_URL`: 飞书API地址，默认: `https://open.feishu.cn`
 - `LARK_BOT_KEY`: Lark群机器人key，也可以在提示词指定
+- `LARK_BASE_URL`: Lark API地址，默认: `https://open.larksuite.com`
 
 #### Bark
 - `BARK_DEVICE_KEY`: Bark device key, Can also be specified in the prompt
+- `BARK_BASE_URL`: Bark Base URL, Default: `https://api.day.app`
 
 #### Telegram
 - `TELEGRAM_DEFAULT_CHAT`: Telegram Default Chat ID, Can also be specified in the prompt
 - `TELEGRAM_BOT_TOKEN`: Telegram Bot Token
-- `TELEGRAM_BASE_URL`: Telegram Base URL, Optional
+- `TELEGRAM_BASE_URL`: Telegram Base URL, Default: `https://api.telegram.org`
 
 #### Home Assistant
-- `HASS_BASE_URL`: Home Assistant Base URL
+- `HASS_BASE_URL`: Home Assistant Base URL, Default: `http://homeassistant.local:8123`
 - `HASS_ACCESS_TOKEN`: Home Assistant Long-Lived Access Token
 - `HASS_MOBILE_KEY`: Home Assistant Mobile Device Key, Can also be specified in the prompt
 
