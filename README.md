@@ -2,7 +2,7 @@
 
 <!-- mcp-name: io.github.aahl/mcp-notify -->
 
-提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信、钉钉机器人、Telegram、Bark
+提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信、钉钉机器人、Telegram、Bark、Lark、飞书
 
 
 ## 安装
@@ -22,6 +22,8 @@
         "WEWORK_APP_TOUSER": "admin",            # 企业微信默认接收人ID
         "WEWORK_BASE_URL": "https://qyapi.weixin.qq.com", # 企业微信API反代理地址，用于可信IP
         "DINGTALK_BOT_KEY": "your-dingtalk-bot", # 钉钉群机器人access_token
+        "FEISHU_BASE_URL": "your-feishu-bot",    # 飞书群机器人key
+        "LARK_BASE_URL": "your-lark-bot-key",    # Lark群机器人key
         "BARK_DEVICE_KEY": "your-bark-key",      # Bark device key
         "TELEGRAM_DEFAULT_CHAT": "-10000000000", # Telegram Default Chat ID
         "TELEGRAM_BOT_TOKEN": "123456789:ABCDE", # Telegram Bot Token

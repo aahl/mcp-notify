@@ -17,7 +17,7 @@ def add_tools(mcp: FastMCP):
         text: str = Field(description="消息内容"),
         title: str = Field("", description="消息标题"),
         msgtype: str = Field("markdown", description="内容类型，仅支持: text/markdown"),
-        bot_key: str = Field("", description="钉钉群机器人access_token，uuid格式，默认从环境变量获取"),
+        bot_key: str = Field("", description="钉钉群机器人access_token，默认从环境变量获取"),
     ):
         """
         https://open.dingtalk.com/document/development/custom-robots-send-group-messages
@@ -32,6 +32,40 @@ def add_tools(mcp: FastMCP):
         res = requests.post(
             f"{base}/robot/send?access_token={bot_key}",
             json={"msgtype": msgtype, msgtype: body},
+        )
+        return res.json()
+
+
+    @mcp.tool(
+        title="飞书/Lark机器人-发送文本消息",
+        description="飞书/Lark群机器人发送文本或Markdown消息",
+    )
+    def lark_send_text(
+        text: str = Field(description="消息内容"),
+        msgtype: str = Field("markdown", description="内容类型，仅支持: text/markdown"),
+        bot_key: str = Field("", description="飞书/Lark机器人key，uuid格式，默认从环境变量获取"),
+        is_lark: int = Field(0, description="根据用户描述识别 0:飞书 1:Lark"),
+    ):
+        """
+        https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
+        https://open.larksuite.com/document/client-docs/bot-v3/add-custom-bot
+        """
+        if msgtype == "markdown":
+            body = {
+                "msg_type": "interactive",
+                "card": {"elements": [{"tag": msgtype, "content": text}]},
+            }
+        else:
+            body = {"msg_type": msgtype, "content": {"text": text}}
+        if not bot_key:
+            bot_key = os.getenv("LARK_BOT_KEY" if is_lark else "FEISHU_BOT_KEY", "")
+        if is_lark:
+            base = os.getenv("LARK_BASE_URL") or "https://open.larksuite.com"
+        else:
+            base = os.getenv("FEISHU_BASE_URL") or "https://open.feishu.cn"
+        res = requests.post(
+            f"{base}/open-apis/bot/v2/hook/{bot_key}",
+            json=body,
         )
         return res.json()
 
@@ -72,6 +106,7 @@ def add_tools(mcp: FastMCP):
                 "url": url,
                 "icon": icon,
                 "level": level,
+                "volume": volume,
             },
         )
         return res.json()
