@@ -106,3 +106,9 @@ docker-compose up -d
 - [大饼报告](https://t.me/s/mcpBtc) - 基于此MCP实现的Telegram频道
 - https://github.com/hasscc/ai-conversation/discussions/3
 - https://linux.do/t/topic/1098688
+
+------
+
+<a href="https://glama.ai/mcp/servers/@al-one/mcp-notify">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@al-one/mcp-notify/badge" />
+</a>
