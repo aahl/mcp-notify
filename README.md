@@ -15,22 +15,7 @@
       "command": "uvx",
       "args": ["mcp-notify"],
       "env": {
-        "WEWORK_BOT_KEY": "your-wework-bot-key", # 企业微信群机器人key，也可以在提示词指定
-        "WEWORK_APP_CORPID": "ww0123456789abcd", # 企业微信所属的企业ID
-        "WEWORK_APP_SECRET": "Your-Secret-Key",  # 企业微信应用的凭证密钥
-        "WEWORK_APP_AGENTID": "1000002",         # 企业微信应用的ID
-        "WEWORK_APP_TOUSER": "admin",            # 企业微信默认接收人ID
-        "WEWORK_BASE_URL": "https://qyapi.weixin.qq.com", # 企业微信API反代理地址，用于可信IP
-        "DINGTALK_BOT_KEY": "your-dingtalk-bot", # 钉钉群机器人access_token
-        "FEISHU_BASE_URL": "your-feishu-bot",    # 飞书群机器人key
-        "LARK_BASE_URL": "your-lark-bot-key",    # Lark群机器人key
-        "BARK_DEVICE_KEY": "your-bark-key",      # Bark device key
-        "TELEGRAM_DEFAULT_CHAT": "-10000000000", # Telegram Default Chat ID
-        "TELEGRAM_BOT_TOKEN": "123456789:ABCDE", # Telegram Bot Token
-        "TELEGRAM_BASE_URL": "https://api.telegram.org", # Optional
-        "HASS_BASE_URL": "http://homeassistant.local:8123", # Home Assistant Base URL
-        "HASS_ACCESS_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5...", # Home Assistant Long-Lived Access Token
-        "HASS_MOBILE_KEY": "mobile_app_my_iphone",          # Home Assistant Mobile Device Key, Can also be specified in the prompt
+        "WEWORK_BOT_KEY": "your-wework-bot-key"
       }
     }
   }
@@ -66,6 +51,40 @@ docker-compose up -d
   }
 }
 ```
+
+
+### 环境变量
+
+#### 企业微信群机器人
+- `WEWORK_BOT_KEY`: 企业微信群机器人默认key，也可以在提示词指定
+
+#### 企业微信应用号
+- `WEWORK_APP_CORPID`: 企业微信所属的企业ID
+- `WEWORK_APP_SECRET`: 企业微信应用的凭证密钥
+- `WEWORK_APP_AGENTID`: 企业微信应用的ID
+- `WEWORK_APP_TOUSER`: 企业微信默认接收人ID，也可以在提示词指定
+- `WEWORK_BASE_URL`: 企业微信API反代理地址，用于可信IP
+
+#### 钉钉群机器人
+- `DINGTALK_BOT_KEY`: 钉钉群机器人access_token
+
+#### 飞书/Lark群机器人
+- `FEISHU_BOT_KEY`: 飞书群机器人key，也可以在提示词指定
+- `LARK_BOT_KEY`: Lark群机器人key，也可以在提示词指定
+
+#### Bark
+- `BARK_DEVICE_KEY`: Bark device key, Can also be specified in the prompt
+
+#### Telegram
+- `TELEGRAM_DEFAULT_CHAT`: Telegram Default Chat ID, Can also be specified in the prompt
+- `TELEGRAM_BOT_TOKEN`: Telegram Bot Token
+- `TELEGRAM_BASE_URL`: Telegram Base URL, Optional
+
+#### Home Assistant
+- `HASS_BASE_URL`: Home Assistant Base URL
+- `HASS_ACCESS_TOKEN`: Home Assistant Long-Lived Access Token
+- `HASS_MOBILE_KEY`: Home Assistant Mobile Device Key, Can also be specified in the prompt
+
 
 ### 快速开始
 - 在线体验: [![smithery.ai](https://smithery.ai/badge/@aahl/mcp-notify)](https://smithery.ai/server/@aahl/mcp-notify)
