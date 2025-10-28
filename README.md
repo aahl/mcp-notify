@@ -1,6 +1,7 @@
 # 💬 Notify MCP Server
 
 <!-- mcp-name: io.github.aahl/mcp-notify -->
+<!-- [![MCP Badge](https://lobehub.com/badge/mcp/aahl-mcp-notify)](https://lobehub.com/mcp/aahl-mcp-notify) -->
 
 提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信、钉钉、Telegram、Bark、Lark、飞书、Home Assistant
 
