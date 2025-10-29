@@ -2,7 +2,7 @@
 
 English | [简体中文](https://github.com/aahl/mcp-notify/blob/main/README.md)
 
-Provides an MCP (Model Context Protocol) server for message push, supporting WeChat Work, DingTalk, Telegram, Bark, Lark, LianLian, and Home Assistant.
+Provides an MCP (Model Context Protocol) server for message push, supporting WeWork, DingTalk, Telegram, Bark, Lark, Feishu, and Home Assistant.
 
 
 ## Install
