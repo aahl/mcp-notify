@@ -53,8 +53,17 @@ docker-compose up -d
 }
 ```
 
+### 快速开始
+- 在线体验: [![fastmcp.cloud](https://img.shields.io/badge/Cloud-+?label=FastMCP)](https://fastmcp.cloud/xiaomi/notify/chat)
+- 在线体验: [![smithery.ai](https://smithery.ai/badge/@aahl/mcp-notify)](https://smithery.ai/server/@aahl/mcp-notify)
+- 添加到 Cursor [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/zh/install-mcp?name=notify&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJtY3Atbm90aWZ5Il19)
+- 添加到 VS Code [![Install MCP Server](https://img.shields.io/badge/VS_Code-+?label=Add+MCP+Server&color=0098FF)](https://insiders.vscode.dev/redirect?url=vscode:mcp/install%3F%7B%22name%22%3A%22notify%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22mcp-notify%22%5D%7D)
+- 添加到 Cherry Studio [![Install MCP Server](https://img.shields.io/badge/Cherry_Studio-+?label=Add+MCP+Server&color=FF5F5F)](https://gitee.com/link?target=cherrystudio%3A%2F%2Fmcp%2Finstall%3Fservers%3DeyJtY3BTZXJ2ZXJzIjp7Im5vdGlmeSI6eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJtY3Atbm90aWZ5Il19fX0%3D)
+- 添加到 Claude Code, 执行命令: `claude mcp add notify -- uvx mcp-notify`
+- 添加到 OpenAI CodeX, 执行命令: `codex mcp add notify -- uvx mcp-notify`
 
-### 环境变量
+
+### ⚙️ 环境变量
 
 #### 企业微信群机器人
 - `WEWORK_BOT_KEY`: 企业微信群机器人默认key，也可以在提示词指定
@@ -90,19 +99,48 @@ docker-compose up -d
 - `HASS_ACCESS_TOKEN`: Home Assistant Long-Lived Access Token
 - `HASS_MOBILE_KEY`: Home Assistant Mobile Device Key, Can also be specified in the prompt
 
+------
 
-### 快速开始
-- 在线体验: [![fastmcp.cloud](https://img.shields.io/badge/Cloud-+?label=FastMCP)](https://fastmcp.cloud/xiaomi/notify/chat)
-- 在线体验: [![smithery.ai](https://smithery.ai/badge/@aahl/mcp-notify)](https://smithery.ai/server/@aahl/mcp-notify)
-- 添加到 Cursor [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/zh/install-mcp?name=notify&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJtY3Atbm90aWZ5Il19)
-- 添加到 VS Code [![Install MCP Server](https://img.shields.io/badge/VS_Code-+?label=Add+MCP+Server&color=0098FF)](https://insiders.vscode.dev/redirect?url=vscode:mcp/install%3F%7B%22name%22%3A%22notify%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22mcp-notify%22%5D%7D)
-- 添加到 Cherry Studio [![Install MCP Server](https://img.shields.io/badge/Cherry_Studio-+?label=Add+MCP+Server&color=FF5F5F)](https://gitee.com/link?target=cherrystudio%3A%2F%2Fmcp%2Finstall%3Fservers%3DeyJtY3BTZXJ2ZXJzIjp7Im5vdGlmeSI6eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJtY3Atbm90aWZ5Il19fX0%3D)
-- 添加到 Claude Code, 执行命令: `claude mcp add notify -- uvx mcp-notify`
-- 添加到 OpenAI CodeX, 执行命令: `codex mcp add notify -- uvx mcp-notify`
+## 🛠️ 可用工具
+
+<details>
+<summary><strong>企业微信群机器人</strong></summary>
+- `wework_send_text` - 发送文本或Markdown消息
+- `wework_send_image` - 发送图片消息
+- `wework_send_news` - 发送图文链接消息
+</details>
+
+<details>
+<summary><strong>企业微信应用号</strong></summary>
+- `wework_app_send_text` - 发送文本或Markdown消息
+- `wework_app_send_image` - 发送图片消息
+- `wework_app_send_video` - 发送视频消息
+- `wework_app_send_voice` - 发送语音消息
+- `wework_app_send_file` - 发送文件消息
+- `wework_app_send_news` - 发送图文链接消息
+</details>
+
+<details>
+<summary><strong>Telegram Bot</strong></summary>
+- `tg_send_message` - 发送文本或Markdown消息
+- `tg_send_photo` - 发送图片消息
+- `tg_send_video` - 发送视频消息
+- `tg_send_audio` - 发送音频消息
+- `tg_send_file` - 发送文件消息
+</details>
+
+<details>
+<summary><strong>其他工具</strong></summary>
+- `ding_send_text` - 通过钉钉群机器人发送文本或Markdown消息
+- `lark_send_text` - 通过飞书/Lark群机器人发送文本或Markdown消息
+- `bark_send_notify` - 通过Bark发送通知
+- `ha_send_mobile` - 通过Home Assistant发送通知
+- `text_to_sound` - 将一段文本转成mp3音频链接
+</details>
 
 ------
 
-## 相关连接
+## 🔗 相关连接
 - [大饼报告](https://t.me/s/mcpBtc) - 基于此MCP实现的Telegram频道
 - https://github.com/hasscc/ai-conversation/discussions/3
 - https://linux.do/t/topic/1098688
