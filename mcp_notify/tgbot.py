@@ -10,6 +10,7 @@ TELEGRAM_DEFAULT_CHAT = os.getenv("TELEGRAM_DEFAULT_CHAT", "0")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_BASE_URL = os.getenv("TELEGRAM_BASE_URL") or "https://api.telegram.org"
 TELEGRAM_MARKDOWN_V2 = "MarkdownV2"
+TELEGRAM_MARKDOWN_DESC = "When using the `MarkdownV2` format, it is necessary to strictly follow the rules returned by the `tg_markdown_rule` tool."
 TELEGRAM_MARKDOWN_RULE = """
 The Bot API supports basic formatting for messages.
 You can use bold, italic, underlined, strikethrough, spoiler text, block quotations as well as inline links and pre-formatted code in your bots' messages.
@@ -72,7 +73,7 @@ def add_tools(mcp: FastMCP):
     async def tg_send_message(
         text: str = Field(description="Text of the message to be sent, 1-4096 characters after entities parsing"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the message text. [text/MarkdownV2]"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the message text. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         if not bot:
@@ -94,7 +95,7 @@ def add_tools(mcp: FastMCP):
         photo: str = Field(description="Photo URL"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Photo caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_photo(
@@ -116,7 +117,7 @@ def add_tools(mcp: FastMCP):
         cover: str = Field("", description="Cover for the video in the message. Optional"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Video caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_video(
@@ -138,7 +139,7 @@ def add_tools(mcp: FastMCP):
         audio: str = Field(description="Audio URL"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Audio caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_audio(
@@ -159,7 +160,7 @@ def add_tools(mcp: FastMCP):
         url: str = Field(description="File URL"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="File caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_document(

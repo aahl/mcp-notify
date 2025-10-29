@@ -3,6 +3,8 @@
 <!-- mcp-name: io.github.aahl/mcp-notify -->
 <!-- [![MCP Badge](https://lobehub.com/badge/mcp/aahl-mcp-notify)](https://lobehub.com/mcp/aahl-mcp-notify) -->
 
+简体中文 | [English](https://github.com/aahl/mcp-notify/blob/main/README_en.md)
+
 提供消息推送的 MCP (Model Context Protocol) 服务器，支持企业微信、钉钉、Telegram、Bark、Lark、飞书、Home Assistant
 
 
@@ -30,7 +32,7 @@
 {
   "mcpServers": {
     "mcp-aktools": {
-      "url": "https://server.smithery.ai/@aahl/mcp-notify/mcp" # Streamable HTTP
+      "url": "https://server.smithery.ai/@aahl/mcp-notify/mcp" # 流式传输HTTP
     }
   }
 }
@@ -47,7 +49,7 @@ docker-compose up -d
 {
   "mcpServers": {
     "mcp-notify": {
-      "url": "http://0.0.0.0:8809/mcp" # Streamable HTTP
+      "url": "http://0.0.0.0:8809/mcp" # 流式传输HTTP
     }
   }
 }
@@ -86,18 +88,18 @@ docker-compose up -d
 - `LARK_BASE_URL`: Lark API地址，默认: `https://open.larksuite.com`
 
 #### Bark
-- `BARK_DEVICE_KEY`: Bark device key, Can also be specified in the prompt
-- `BARK_BASE_URL`: Bark Base URL, Default: `https://api.day.app`
+- `BARK_DEVICE_KEY`: 默认Bark设备key，也可以在提示词指定
+- `BARK_BASE_URL`: Bark API地址，默认: `https://api.day.app`
 
 #### Telegram
-- `TELEGRAM_DEFAULT_CHAT`: Telegram Default Chat ID, Can also be specified in the prompt
-- `TELEGRAM_BOT_TOKEN`: Telegram Bot Token
-- `TELEGRAM_BASE_URL`: Telegram Base URL, Default: `https://api.telegram.org`
+- `TELEGRAM_DEFAULT_CHAT`: Telegram 默认会话ID，也可以在提示词指定
+- `TELEGRAM_BOT_TOKEN`: Telegram 机器人令牌
+- `TELEGRAM_BASE_URL`: Telegram API反代理地址，默认: `https://api.telegram.org`
 
 #### Home Assistant
-- `HASS_BASE_URL`: Home Assistant Base URL, Default: `http://homeassistant.local:8123`
-- `HASS_ACCESS_TOKEN`: Home Assistant Long-Lived Access Token
-- `HASS_MOBILE_KEY`: Home Assistant Mobile Device Key, Can also be specified in the prompt
+- `HASS_BASE_URL`: Home Assistant 地址，默认: `http://homeassistant.local:8123`
+- `HASS_ACCESS_TOKEN`: Home Assistant 长效令牌
+- `HASS_MOBILE_KEY`: Home Assistant 移动设备key (如: mobile_app_your_iphone)，也可在提示词指定
 
 ------
 
@@ -132,6 +134,7 @@ docker-compose up -d
 - `tg_send_video` - 发送视频消息
 - `tg_send_audio` - 发送音频消息
 - `tg_send_file` - 发送文件消息
+- `tg_markdown_rule` - Telegram markdown 规则
 
 </details>
 
@@ -157,5 +160,5 @@ docker-compose up -d
 ------
 
 <a href="https://glama.ai/mcp/servers/@al-one/mcp-notify">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@al-one/mcp-notify/badge" />
+  <img width="400" src="https://glama.ai/mcp/servers/@al-one/mcp-notify/badge">
 </a>
