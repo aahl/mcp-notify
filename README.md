@@ -105,38 +105,47 @@ docker-compose up -d
 
 <details>
 <summary><strong>企业微信群机器人</strong></summary>
+
 - `wework_send_text` - 发送文本或Markdown消息
 - `wework_send_image` - 发送图片消息
 - `wework_send_news` - 发送图文链接消息
+
 </details>
 
 <details>
 <summary><strong>企业微信应用号</strong></summary>
+
 - `wework_app_send_text` - 发送文本或Markdown消息
 - `wework_app_send_image` - 发送图片消息
 - `wework_app_send_video` - 发送视频消息
 - `wework_app_send_voice` - 发送语音消息
 - `wework_app_send_file` - 发送文件消息
 - `wework_app_send_news` - 发送图文链接消息
+
 </details>
 
 <details>
 <summary><strong>Telegram Bot</strong></summary>
+
 - `tg_send_message` - 发送文本或Markdown消息
 - `tg_send_photo` - 发送图片消息
 - `tg_send_video` - 发送视频消息
 - `tg_send_audio` - 发送音频消息
 - `tg_send_file` - 发送文件消息
+
 </details>
 
 <details>
 <summary><strong>其他工具</strong></summary>
+
 - `ding_send_text` - 通过钉钉群机器人发送文本或Markdown消息
 - `lark_send_text` - 通过飞书/Lark群机器人发送文本或Markdown消息
 - `bark_send_notify` - 通过Bark发送通知
 - `ha_send_mobile` - 通过Home Assistant发送通知
 - `text_to_sound` - 将一段文本转成mp3音频链接
+
 </details>
+
 
 ------
 
