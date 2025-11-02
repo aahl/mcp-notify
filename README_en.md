@@ -140,8 +140,9 @@ docker-compose up -d
 
 - `ding_send_text` - Sending text or markdown message via DingTalk group robot
 - `lark_send_text` - Sending text or markdown message via Lark/Feishu group robot
-- `bark_send_notify` - Send notification via Bark
-- `ha_send_mobile` - Send notification via Home Assistant mobile APP
+- `bark_send_notify` - Push a notification via Bark
+- `ntfy_send_notify` - Push a notification via Ntfy
+- `ha_send_mobile` - Push a notification via Home Assistant mobile APP
 - `text_to_sound` - Convert a text segment into an audio link
 
 </details>

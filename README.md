@@ -144,6 +144,7 @@ docker-compose up -d
 - `ding_send_text` - 通过钉钉群机器人发送文本或Markdown消息
 - `lark_send_text` - 通过飞书/Lark群机器人发送文本或Markdown消息
 - `bark_send_notify` - 通过Bark发送通知
+- `ntfy_send_notify` - 通过Ntfy发送通知
 - `ha_send_mobile` - 通过Home Assistant发送通知
 - `text_to_sound` - 将一段文本转成mp3音频链接
 
