@@ -15,7 +15,7 @@ from . import (
 _LOGGER = logging.getLogger(__name__)
 
 
-mcp = FastMCP(name="mcp-notify", version="0.1.4")
+mcp = FastMCP(name="mcp-notify", version="0.1.5")
 wework.add_tools(mcp)
 tgbot.add_tools(mcp)
 other.add_tools(mcp)
