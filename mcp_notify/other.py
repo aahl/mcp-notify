@@ -185,3 +185,32 @@ def add_tools(mcp: FastMCP):
             data["actions"] = actions
         res = requests.post(f"{base}", json=data)
         return res.json()
+
+
+    @mcp.tool(
+        title="PushPlus推送消息",
+        description="通过PushPlus(推送加)推送消息",
+    )
+    def pushplus_send_msg(
+        content: str = Field(description="消息内容"),
+        title: str = Field("", description="消息标题"),
+        token: str = Field("", description="用户token，默认从环境变量获取"),
+        template: str = Field("", description="消息内容格式: `html`(默认)/`txt`/`markdown`"),
+        channel: str = Field("", description="发送渠道: `wechat`(默认)/`webhook`/`mail`"),
+    ):
+        """
+        https://www.pushplus.plus/doc/guide/api.html
+        """
+        if not token:
+            token = os.getenv("PUSH_PLUS_TOKEN", "")
+        base = os.getenv("PUSH_PLUS_BASE_URL") or "http://www.pushplus.plus"
+        res = requests.post(
+            f"{base}/{token}",
+            json={
+                "content": content,
+                "title": title,
+                "template": template,
+                "channel": channel,
+            },
+        )
+        return res.json()

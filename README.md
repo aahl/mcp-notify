@@ -87,10 +87,6 @@ docker-compose up -d
 - `LARK_BOT_KEY`: Lark群机器人key，也可以在提示词指定
 - `LARK_BASE_URL`: Lark API地址，默认: `https://open.larksuite.com`
 
-#### Bark
-- `BARK_DEVICE_KEY`: 默认Bark设备key，也可以在提示词指定
-- `BARK_BASE_URL`: Bark API地址，默认: `https://api.day.app`
-
 #### Telegram
 - `TELEGRAM_DEFAULT_CHAT`: Telegram 默认会话ID，也可以在提示词指定
 - `TELEGRAM_BOT_TOKEN`: Telegram 机器人令牌
@@ -100,6 +96,14 @@ docker-compose up -d
 - `HASS_BASE_URL`: Home Assistant 地址，默认: `http://homeassistant.local:8123`
 - `HASS_ACCESS_TOKEN`: Home Assistant 长效令牌
 - `HASS_MOBILE_KEY`: Home Assistant 移动设备key (如: mobile_app_your_iphone)，也可在提示词指定
+
+#### 其他
+- `BARK_DEVICE_KEY`: 默认Bark设备key，也可以在提示词指定
+- `BARK_BASE_URL`: Bark API地址，默认: `https://api.day.app`
+- `NTFY_DEFAULT_TOPIC`: 默认Ntfy订阅主题，也可以在提示词指定
+- `NTFY_BASE_URL`: Ntfy API地址，默认: `https://ntfy.sh`
+- `PUSH_PLUS_TOKEN`: 默认PushPlus令牌，也可以在提示词指定
+- `PUSH_PLUS_BASE_URL`: PushPlus API地址，默认: `http://www.pushplus.plus`
 
 ------
 
@@ -145,6 +149,7 @@ docker-compose up -d
 - `lark_send_text` - 通过飞书/Lark群机器人发送文本或Markdown消息
 - `bark_send_notify` - 通过Bark发送通知
 - `ntfy_send_notify` - 通过Ntfy发送通知
+- `pushplus_send_msg` - 通过PushPlus发送消息
 - `ha_send_mobile` - 通过Home Assistant发送通知
 - `text_to_sound` - 将一段文本转成mp3音频链接
 

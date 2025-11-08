@@ -22,8 +22,8 @@ Message entities can be nested, providing following restrictions are met:
 - All other entities can't contain each other.
 Pass `MarkdownV2` in the `parse_mode` field. Use the **following syntax** in your message:
 ```MarkdownV2
-*bold \*text*
-_italic \*text_
+*bold \\*text*
+_italic \\*text_
 __underline__
 ~strikethrough~
 ||spoiler||
@@ -50,10 +50,10 @@ pre-formatted fixed-width code block written in the Python programming language
 >The last line of the expandable block quotation with the expandability mark||
 ```
 Please note:
-- Any character with code between 1 and 126 inclusively can be escaped anywhere with a preceding '\' character, in which case it is treated as an ordinary character and not a part of the markup. This implies that '\' character usually must be escaped with a preceding '\' character.
-- Inside pre and code entities, all '`' and '\' characters must be escaped with a preceding '\' character.
-- Inside the (...) part of the inline link and custom emoji definition, all ')' and '\' must be escaped with a preceding '\' character.
-- **MUST** In all other places characters '_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' must be escaped with the preceding character '\'.
+- Any character with code between 1 and 126 inclusively can be escaped anywhere with a preceding '\\' character, in which case it is treated as an ordinary character and not a part of the markup. This implies that '\\' character usually must be escaped with a preceding '\\' character.
+- Inside pre and code entities, all '`' and '\\' characters must be escaped with a preceding '\\' character.
+- Inside the (...) part of the inline link and custom emoji definition, all ')' and '\\' must be escaped with a preceding '\\' character.
+- **MUST** In all other places characters '_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' must be escaped with the preceding character '\\'.
 - In case of ambiguity between italic and underline entities __ is always greedily treated from left to right as beginning or end of an underline entity, so instead of ___italic underline___ use ___italic underline_**__, adding an empty bold entity as a separator.
 """
 

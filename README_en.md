@@ -84,10 +84,6 @@ docker-compose up -d
 - `FEISHU_BOT_KEY`: The key of Feishu Robot
 - `FEISHU_BASE_URL`: API address of Feishu, Default: `https://open.feishu.cn`
 
-#### Bark
-- `BARK_DEVICE_KEY`: Bark device key, Can also be specified in the prompt
-- `BARK_BASE_URL`: Bark Base URL, Default: `https://api.day.app`
-
 #### Telegram
 - `TELEGRAM_DEFAULT_CHAT`: Telegram Default Chat ID, Can also be specified in the prompt
 - `TELEGRAM_BOT_TOKEN`: Telegram Bot Token
@@ -97,6 +93,14 @@ docker-compose up -d
 - `HASS_BASE_URL`: Home Assistant Base URL, Default: `http://homeassistant.local:8123`
 - `HASS_ACCESS_TOKEN`: Home Assistant Long-Lived Access Token
 - `HASS_MOBILE_KEY`: Home Assistant Mobile Device Key, Can also be specified in the prompt
+
+#### Other
+- `BARK_DEVICE_KEY`: Bark device key, Can also be specified in the prompt
+- `BARK_BASE_URL`: Bark Base URL, Default: `https://api.day.app`
+- `NTFY_DEFAULT_TOPIC`: Default Ntfy topic, Can also be specified in the prompt
+- `NTFY_BASE_URL`: Ntfy Base URL, Default: `https://ntfy.sh`
+- `PUSH_PLUS_TOKEN`: Default PushPlus token, Can also be specified in the prompt
+- `PUSH_PLUS_BASE_URL`: PushPlus Base URL, Default: `http://www.pushplus.plus`
 
 ------
 
@@ -142,6 +146,7 @@ docker-compose up -d
 - `lark_send_text` - Sending text or markdown message via Lark/Feishu group robot
 - `bark_send_notify` - Push a notification via Bark
 - `ntfy_send_notify` - Push a notification via Ntfy
+- `pushplus_send_msg` - Send a message via PushPlus
 - `ha_send_mobile` - Push a notification via Home Assistant mobile APP
 - `text_to_sound` - Convert a text segment into an audio link
 
