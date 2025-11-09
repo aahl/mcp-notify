@@ -1,5 +1,6 @@
 import os
 import logging
+import telegramify_markdown
 from telegram import Bot
 from fastmcp import FastMCP
 from pydantic import Field
@@ -10,17 +11,15 @@ TELEGRAM_DEFAULT_CHAT = os.getenv("TELEGRAM_DEFAULT_CHAT", "0")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_BASE_URL = os.getenv("TELEGRAM_BASE_URL") or "https://api.telegram.org"
 TELEGRAM_MARKDOWN_V2 = "MarkdownV2"
-TELEGRAM_MARKDOWN_DESC = "When using the `MarkdownV2` format, it is necessary to strictly follow the rules returned by the `tg_markdown_rule` tool."
 TELEGRAM_MARKDOWN_RULE = """
-The Bot API supports basic formatting for messages.
-You can use bold, italic, underlined, strikethrough, spoiler text, block quotations as well as inline links and pre-formatted code in your bots' messages.
-Telegram clients will render them accordingly. You can specify text entities directly, or use markdown-style or HTML-style formatting.
-Message entities can be nested, providing following restrictions are met:
-- If two entities have common characters, then one of them is fully contained inside another.
-- bold, italic, underline, strikethrough, and spoiler entities can contain and can be part of any other entities, except pre and code.
-- blockquote and expandable_blockquote entities can't be nested.
-- All other entities can't contain each other.
-Pass `MarkdownV2` in the `parse_mode` field. Use the **following syntax** in your message:
+Pass `MarkdownV2` in the `parse_mode` field. Please strictly follow the following rules:
+- Any character with code between 1 and 126 inclusively can be escaped anywhere with a preceding backslash, in which case it is treated as an ordinary character and not a part of the markup. This implies that backslash usually must be escaped with a preceding backslash.
+- Inside pre and code entities, all '`' and backslash must be escaped with a preceding backslash.
+- Inside the (...) part of the inline link and custom emoji definition, all ')' and backslash must be escaped with a preceding backslash.
+- In all other places characters '_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' MUST be escaped with the preceding backslash. **Extremely important !!!**
+- In case of ambiguity between italic and underline entities __ is always greedily treated from left to right as beginning or end of an underline entity, so instead of ___italic underline___ use ___italic underline_**__, adding an empty bold entity as a separator.
+- Don't support for multi-level heads, all '#' must be escaped with a preceding backslash to indicate tags.
+Only supports the following syntax in your message:
 ```MarkdownV2
 *bold \\*text*
 _italic \\*text_
@@ -28,18 +27,11 @@ __underline__
 ~strikethrough~
 ||spoiler||
 *bold _italic bold ~italic bold strikethrough ||italic bold strikethrough spoiler||~ __underline italic bold___ bold*
-[inline URL](http://www.example.com/)
-[inline mention of a user](tg://user?id=123456789)
-![👍](tg://emoji?id=5368324170671202286)
+[inline URL](http://example\\.com)
+[inline mention of a user](tg://user?id=123)
+![👍](tg://emoji?id=123456)
 `inline fixed-width code`
-\```
-pre-formatted fixed-width code block
-\```
-\```python
-pre-formatted fixed-width code block written in the Python programming language
-\```
 >Block quotation started
->Block quotation continued
 >Block quotation continued
 >The last line of the block quotation
 **>The expandable block quotation started right after the previous block quotation
@@ -48,13 +40,13 @@ pre-formatted fixed-width code block written in the Python programming language
 >Hidden by default part of the expandable block quotation started
 >Expandable block quotation continued
 >The last line of the expandable block quotation with the expandability mark||
+\```
+pre-formatted fixed-width code block\\.
+\```
+\```python
+pre-formatted fixed-width code block written in the Python programming language
+\```
 ```
-Please note:
-- Any character with code between 1 and 126 inclusively can be escaped anywhere with a preceding '\\' character, in which case it is treated as an ordinary character and not a part of the markup. This implies that '\\' character usually must be escaped with a preceding '\\' character.
-- Inside pre and code entities, all '`' and '\\' characters must be escaped with a preceding '\\' character.
-- Inside the (...) part of the inline link and custom emoji definition, all ')' and '\\' must be escaped with a preceding '\\' character.
-- **MUST** In all other places characters '_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' must be escaped with the preceding character '\\'.
-- In case of ambiguity between italic and underline entities __ is always greedily treated from left to right as beginning or end of an underline entity, so instead of ___italic underline___ use ___italic underline_**__, adding an empty bold entity as a separator.
 """
 
 
@@ -68,16 +60,18 @@ def add_tools(mcp: FastMCP):
 
     @mcp.tool(
         title="Telegram send text",
-        description="Send text message via telegram bot",
+        description="Send text or markdown message via telegram bot",
     )
     async def tg_send_message(
         text: str = Field(description="Text of the message to be sent, 1-4096 characters after entities parsing"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the message text. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the message text. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         if not bot:
             return "Please set the `TELEGRAM_BOT_TOKEN` environment variable"
+        if parse_mode == TELEGRAM_MARKDOWN_V2:
+            text = telegramify_markdown.markdownify(text)
         res = await bot.send_message(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             text=text,
@@ -95,7 +89,7 @@ def add_tools(mcp: FastMCP):
         photo: str = Field(description="Photo URL"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Photo caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_photo(
@@ -117,7 +111,7 @@ def add_tools(mcp: FastMCP):
         cover: str = Field("", description="Cover for the video in the message. Optional"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Video caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_video(
@@ -139,7 +133,7 @@ def add_tools(mcp: FastMCP):
         audio: str = Field(description="Audio URL"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Audio caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_audio(
@@ -160,7 +154,7 @@ def add_tools(mcp: FastMCP):
         url: str = Field(description="File URL"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="File caption, 0-1024 characters after entities parsing"),
-        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2] {TELEGRAM_MARKDOWN_DESC}"),
+        parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
         res = await bot.send_document(

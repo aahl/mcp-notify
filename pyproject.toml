@@ -1,6 +1,6 @@
 [project]
 name = "mcp-notify"
-version = "0.1.5"
+version = "0.1.6"
 description = "MCP Server for notify"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -10,6 +10,8 @@ dependencies = [
     "fastmcp>=2.0.0",
     "cachetools>=6.2.0",
     "python-telegram-bot>=22.0",
+    "telegramify-markdown>=0.5",
+    "telegramify-markdown[mermaid]>=0.5",
 ]
 
 [project.urls]
