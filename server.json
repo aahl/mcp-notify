@@ -3,7 +3,7 @@
   "name": "io.github.aahl/mcp-notify",
   "title": "Notify MCP Server",
   "description": "MCP Server for notify to Weixin, Telegram, Bark, Lark, Feishu, DingTalk",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "repository": {
     "url": "https://github.com/aahl/mcp-notify",
     "source": "github"
@@ -12,7 +12,7 @@
     {
       "registryType": "pypi",
       "identifier": "mcp-notify",
-      "version": "0.1.6",
+      "version": "0.1.7",
       "transport": {"type": "stdio"}
     },
     {

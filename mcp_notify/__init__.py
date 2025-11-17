@@ -15,7 +15,7 @@ from . import (
 _LOGGER = logging.getLogger(__name__)
 
 
-mcp = FastMCP(name="mcp-notify", version="0.1.6")
+mcp = FastMCP(name="mcp-notify", version="0.1.7")
 wework.add_tools(mcp)
 tgbot.add_tools(mcp)
 other.add_tools(mcp)
@@ -33,7 +33,7 @@ def main():
 
     args = parser.parse_args()
     if args.http or mode == "http":
-        app = mcp.streamable_http_app()
+        app = mcp.http_app()
         app.add_middleware(
             CORSMiddleware,
             allow_origins=["*"],

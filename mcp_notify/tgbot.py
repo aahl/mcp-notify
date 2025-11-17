@@ -19,6 +19,7 @@ Pass `MarkdownV2` in the `parse_mode` field. Please strictly follow the followin
 - In all other places characters '_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' MUST be escaped with the preceding backslash. **Extremely important !!!**
 - In case of ambiguity between italic and underline entities __ is always greedily treated from left to right as beginning or end of an underline entity, so instead of ___italic underline___ use ___italic underline_**__, adding an empty bold entity as a separator.
 - Don't support for multi-level heads, all '#' must be escaped with a preceding backslash to indicate tags.
+- Code blocks are enclosed with three backticks.
 Only supports the following syntax in your message:
 ```MarkdownV2
 *bold \\*text*
@@ -40,14 +41,15 @@ __underline__
 >Hidden by default part of the expandable block quotation started
 >Expandable block quotation continued
 >The last line of the expandable block quotation with the expandability mark||
-\```
-pre-formatted fixed-width code block\\.
-\```
-\```python
-pre-formatted fixed-width code block written in the Python programming language
-\```
 ```
 """
+
+
+md_customize = telegramify_markdown.customize.get_runtime_config()
+md_customize.markdown_symbol.head_level_1 = "1️⃣"
+md_customize.markdown_symbol.head_level_2 = "2️⃣"
+md_customize.markdown_symbol.head_level_3 = "3️⃣"
+md_customize.markdown_symbol.head_level_4 = "4️⃣"
 
 
 def add_tools(mcp: FastMCP):
@@ -92,6 +94,8 @@ def add_tools(mcp: FastMCP):
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
+        if parse_mode == TELEGRAM_MARKDOWN_V2:
+            caption = telegramify_markdown.markdownify(caption)
         res = await bot.send_photo(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             photo=photo,
@@ -114,6 +118,8 @@ def add_tools(mcp: FastMCP):
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
+        if parse_mode == TELEGRAM_MARKDOWN_V2:
+            caption = telegramify_markdown.markdownify(caption)
         res = await bot.send_video(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             video=video,
@@ -136,6 +142,8 @@ def add_tools(mcp: FastMCP):
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
+        if parse_mode == TELEGRAM_MARKDOWN_V2:
+            caption = telegramify_markdown.markdownify(caption)
         res = await bot.send_audio(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             audio=audio,
@@ -157,6 +165,8 @@ def add_tools(mcp: FastMCP):
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
         reply_to_message_id: int = Field(0, description="Identifier of the message that will be replied to"),
     ):
+        if parse_mode == TELEGRAM_MARKDOWN_V2:
+            caption = telegramify_markdown.markdownify(caption)
         res = await bot.send_document(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             document=url,
