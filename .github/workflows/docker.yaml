@@ -2,6 +2,10 @@ name: Build Docker Image
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag for this image
+        default: ''
   release:
     types: [published]
   push:
@@ -14,13 +18,15 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
+        include:
+        - platform: linux/amd64
+          runner: ubuntu-latest
+        - platform: linux/arm64
+          runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
     steps:
       - name: Prepare
         run: |
@@ -100,6 +106,7 @@ jobs:
           images: |
             ${{ env.GITHUB_CR_REPO }}
           tags: |
+            type=raw,value=${{ inputs.tag }},enable=${{ inputs.tag != '' }}
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
