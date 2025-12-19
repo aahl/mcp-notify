@@ -135,7 +135,6 @@ docker-compose up -d
 - `tg_send_video` - Send video message
 - `tg_send_audio` - Send voice message
 - `tg_send_file` - Send file message
-- `tg_markdown_rule` - Telegram markdown rules
 
 </details>
 

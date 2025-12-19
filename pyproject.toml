@@ -1,10 +1,10 @@
 [project]
 name = "mcp-notify"
-version = "0.1.7"
+version = "0.1.8"
 description = "MCP Server for notify"
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = ["notify", "telegram", "weixin", "wework", "mcp", "llm"]
+keywords = ["notify", "telegram", "weixin", "wework", "lark", "ntfy", "mcp", "llm"]
 license = { text = "MIT" }
 dependencies = [
     "fastmcp>=2.0.0",

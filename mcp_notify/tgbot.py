@@ -11,38 +11,6 @@ TELEGRAM_DEFAULT_CHAT = os.getenv("TELEGRAM_DEFAULT_CHAT", "0")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_BASE_URL = os.getenv("TELEGRAM_BASE_URL") or "https://api.telegram.org"
 TELEGRAM_MARKDOWN_V2 = "MarkdownV2"
-TELEGRAM_MARKDOWN_RULE = """
-Pass `MarkdownV2` in the `parse_mode` field. Please strictly follow the following rules:
-- Any character with code between 1 and 126 inclusively can be escaped anywhere with a preceding backslash, in which case it is treated as an ordinary character and not a part of the markup. This implies that backslash usually must be escaped with a preceding backslash.
-- Inside pre and code entities, all '`' and backslash must be escaped with a preceding backslash.
-- Inside the (...) part of the inline link and custom emoji definition, all ')' and backslash must be escaped with a preceding backslash.
-- In all other places characters '_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' MUST be escaped with the preceding backslash. **Extremely important !!!**
-- In case of ambiguity between italic and underline entities __ is always greedily treated from left to right as beginning or end of an underline entity, so instead of ___italic underline___ use ___italic underline_**__, adding an empty bold entity as a separator.
-- Don't support for multi-level heads, all '#' must be escaped with a preceding backslash to indicate tags.
-- Code blocks are enclosed with three backticks.
-Only supports the following syntax in your message:
-```MarkdownV2
-*bold \\*text*
-_italic \\*text_
-__underline__
-~strikethrough~
-||spoiler||
-*bold _italic bold ~italic bold strikethrough ||italic bold strikethrough spoiler||~ __underline italic bold___ bold*
-[inline URL](http://example\\.com)
-[inline mention of a user](tg://user?id=123)
-![👍](tg://emoji?id=123456)
-`inline fixed-width code`
->Block quotation started
->Block quotation continued
->The last line of the block quotation
-**>The expandable block quotation started right after the previous block quotation
->It is separated from the previous block quotation by an empty bold entity
->Expandable block quotation continued
->Hidden by default part of the expandable block quotation started
->Expandable block quotation continued
->The last line of the expandable block quotation with the expandability mark||
-```
-"""
 
 
 md_customize = telegramify_markdown.customize.get_runtime_config()
@@ -175,11 +143,3 @@ def add_tools(mcp: FastMCP):
             reply_to_message_id=reply_to_message_id or None,
         )
         return res.to_json()
-
-
-    @mcp.tool(
-        title="Telegram markdown rule",
-        description="Telegram supports Markdown formatting. Must use this tool before sending markdown to Telegram.",
-    )
-    def tg_markdown_rule():
-        return TELEGRAM_MARKDOWN_RULE
