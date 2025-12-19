@@ -1,19 +1,87 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.aahl/mcp-notify",
   "title": "Notify MCP Server",
   "description": "MCP Server for notify to Weixin, Telegram, Bark, Lark, Feishu, DingTalk",
-  "version": "0.1.8",
   "repository": {
     "url": "https://github.com/aahl/mcp-notify",
     "source": "github"
   },
+  "version": "0.1.8",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "mcp-notify",
       "version": "0.1.8",
-      "transport": {"type": "stdio"}
+      "transport": {"type": "stdio"},
+      "environmentVariables": [
+        {
+          "name": "WEWORK_BOT_KEY",
+          "description": "The default key for the WeWork group robot can also be specified in the prompt",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "WEWORK_APP_CORPID",
+          "description": "Company ID of WeWork",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "WEWORK_APP_SECRET",
+          "description": "Secret key of WeWork",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "WEWORK_APP_AGENTID",
+          "description": "Agent ID of WeWork Application, Default: 1000002",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "WEWORK_APP_TOUSER",
+          "description": "Default recipient user ID in WeWork, Default: @all",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "DINGTALK_BOT_KEY",
+          "description": "Access token of DingTalk Robot, Can also be specified in the prompt",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "LARK_BOT_KEY",
+          "description": "The key of Lark Robot, Can also be specified in the prompt",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "FEISHU_BOT_KEY",
+          "description": "The key of Feishu Robot, Can also be specified in the prompt",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "TELEGRAM_DEFAULT_CHAT",
+          "description": "Telegram Default Chat ID, Can also be specified in the prompt",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "TELEGRAM_BOT_TOKEN",
+          "description": "Telegram Bot Token",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "PUSH_PLUS_TOKEN",
+          "description": "Default PushPlus token, Can also be specified in the prompt",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
     },
     {
       "registryType": "oci",
