@@ -33,7 +33,7 @@ HA_NOTIFY_DATA_PROMPT = """
 All fields in the extended data are optional.
 """
 
-def add_tools(mcp: FastMCP):
+def add_tools(mcp: FastMCP, logger=None):
 
     @mcp.tool(
         title="Send to HomeAssistant Mobile APP",

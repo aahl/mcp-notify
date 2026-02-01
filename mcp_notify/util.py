@@ -3,7 +3,7 @@ from pydantic import Field
 from urllib.parse import urlencode
 
 
-def add_tools(mcp: FastMCP):
+def add_tools(mcp: FastMCP, logger=None):
 
     @mcp.tool(
         title="文本转音频",

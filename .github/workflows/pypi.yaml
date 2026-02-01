@@ -9,14 +9,20 @@ on:
     paths-ignore:
       - .github/**
 
-env:
-  PYPI_PKG_NAME: mcp-notify
-
 jobs:
   build:
     name: Build distribution 📦
     runs-on: ubuntu-latest
+    outputs:
+      PYPI_PKG_NAME: ${{ steps.prepare.outputs.PYPI_PKG_NAME }}
     steps:
+    - name: Prepare
+      id: prepare
+      run: |
+        repo=${GITHUB_REPOSITORY#*/}
+        echo "PYPI_PKG_NAME=$repo" >> $GITHUB_ENV
+        echo "PYPI_PKG_NAME=$repo" >> $GITHUB_OUTPUT
+
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
@@ -39,14 +45,13 @@ jobs:
         path: dist/
 
   publish-to-pypi:
-    name: Publish Python 🐍 distribution 📦 to PyPI
-    if: startsWith(github.ref, 'refs/tags/')
+    name: Publish to PyPI
     needs:
     - build
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/${{ env.PYPI_PKG_NAME }}
+      url: https://pypi.org/p/${{ needs.build.outputs.PYPI_PKG_NAME }}
     permissions:
       id-token: write
     steps:
@@ -58,5 +63,6 @@ jobs:
 
     - name: Publish distribution 📦 to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}

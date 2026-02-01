@@ -1,11 +1,11 @@
 import os
-import logging
+import io
+import re
+import base64
 import telegramify_markdown
-from telegram import Bot
+from telegram import Bot, InputFile
 from fastmcp import FastMCP
 from pydantic import Field
-
-_LOGGER = logging.getLogger(__name__)
 
 TELEGRAM_DEFAULT_CHAT = os.getenv("TELEGRAM_DEFAULT_CHAT", "0")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
@@ -20,7 +20,7 @@ md_customize.markdown_symbol.head_level_3 = "3️⃣"
 md_customize.markdown_symbol.head_level_4 = "4️⃣"
 
 
-def add_tools(mcp: FastMCP):
+def add_tools(mcp: FastMCP, logger=None):
     bot = Bot(
         TELEGRAM_BOT_TOKEN,
         base_url=f"{TELEGRAM_BASE_URL}/bot",
@@ -56,7 +56,7 @@ def add_tools(mcp: FastMCP):
         description="Send photo via telegram bot",
     )
     async def tg_send_photo(
-        photo: str = Field(description="Photo URL"),
+        photo: str = Field(description="Photo URL or base64 data URI (e.g., data:image/png;base64,..."),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Photo caption, 0-1024 characters after entities parsing"),
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
@@ -64,6 +64,17 @@ def add_tools(mcp: FastMCP):
     ):
         if parse_mode == TELEGRAM_MARKDOWN_V2:
             caption = telegramify_markdown.markdownify(caption)
+
+        if photo.startswith("data:"):
+            match = re.match(r"data:image/([^;]+);base64,(.*)", photo)
+            if not match:
+                return {"error": "Invalid base64 data URL format"}
+            try:
+                datas = base64.b64decode(match.group(2))
+                photo = InputFile(io.BytesIO(datas), f"image.{match.group(1)}")
+            except Exception as e:
+                return {"error": f"Failed to decode base64: {str(e)}"}
+
         res = await bot.send_photo(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             photo=photo,
@@ -79,7 +90,7 @@ def add_tools(mcp: FastMCP):
         description="Send video via telegram bot",
     )
     async def tg_send_video(
-        video: str = Field(description="Video URL"),
+        video: str = Field(description="Video URL or base64 data URI (e.g., data:video/mp4;base64,..."),
         cover: str = Field("", description="Cover for the video in the message. Optional"),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Video caption, 0-1024 characters after entities parsing"),
@@ -88,6 +99,17 @@ def add_tools(mcp: FastMCP):
     ):
         if parse_mode == TELEGRAM_MARKDOWN_V2:
             caption = telegramify_markdown.markdownify(caption)
+
+        if video.startswith("data:"):
+            match = re.match(r"data:video/([^;]+);base64,(.*)", video)
+            if not match:
+                return {"error": "Invalid base64 data URL format"}
+            try:
+                datas = base64.b64decode(match.group(2))
+                video = InputFile(io.BytesIO(datas), f"video.{match.group(1)}")
+            except Exception as e:
+                return {"error": f"Failed to decode base64: {str(e)}"}
+
         res = await bot.send_video(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             video=video,
@@ -104,7 +126,7 @@ def add_tools(mcp: FastMCP):
         description="Send audio via telegram bot",
     )
     async def tg_send_audio(
-        audio: str = Field(description="Audio URL"),
+        audio: str = Field(description="Audio URL or base64 data URI (e.g., data:audio/wav;base64,..."),
         chat_id: str = Field("", description="Telegram chat id, Default to get from environment variables"),
         caption: str = Field("", description="Audio caption, 0-1024 characters after entities parsing"),
         parse_mode: str = Field("", description=f"Mode for parsing entities in the caption. [text/MarkdownV2]"),
@@ -112,6 +134,17 @@ def add_tools(mcp: FastMCP):
     ):
         if parse_mode == TELEGRAM_MARKDOWN_V2:
             caption = telegramify_markdown.markdownify(caption)
+
+        if audio.startswith("data:"):
+            match = re.match(r"data:audio/([^;]+);base64,(.*)", audio)
+            if not match:
+                return {"error": "Invalid base64 data URL format"}
+            try:
+                datas = base64.b64decode(match.group(2))
+                audio = InputFile(io.BytesIO(datas), f"audio.{match.group(1)}")
+            except Exception as e:
+                return {"error": f"Failed to decode base64: {str(e)}"}
+
         res = await bot.send_audio(
             chat_id=chat_id or TELEGRAM_DEFAULT_CHAT,
             audio=audio,

@@ -1,6 +1,6 @@
 services:
   mcp-notify:
-    container_name: mcp_notify
+    container_name: mcp-notify
     image: ghcr.nju.edu.cn/aahl/mcp-notify
     ports:
       - 8809:80

@@ -1,10 +1,7 @@
 import os
-import logging
 import requests
 from fastmcp import FastMCP
 from pydantic import Field
-
-_LOGGER = logging.getLogger(__name__)
 
 NTFY_ACTIONS_RULE = """
 The following actions are supported:
@@ -38,7 +35,7 @@ The following actions are supported:
 """
 
 
-def add_tools(mcp: FastMCP):
+def add_tools(mcp: FastMCP, logger=None):
 
     @mcp.tool(
         title="钉钉群机器人-发送文本消息",

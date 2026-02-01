@@ -1,14 +1,11 @@
 import os
 import io
-import logging
 import requests
 import hashlib
 import base64
 from fastmcp import FastMCP
 from pydantic import Field
 from cachetools import cached, TTLCache
-
-_LOGGER = logging.getLogger(__name__)
 
 WEWORK_BOT_KEY = os.getenv("WEWORK_BOT_KEY", "")
 WEWORK_APP_AGENTID = int(os.getenv("WEWORK_APP_AGENTID", 1000002))
@@ -21,7 +18,7 @@ FIELD_BOT_KEY = Field("", description="企业微信群机器人key，uuid格式�
 FIELD_TO_USER = Field("", description="接收消息的成员ID，多个用`|`分隔，为`@all`时向该企业应用全部成员发送，默认从环境变量获取")
 
 
-def add_tools(mcp: FastMCP):
+def add_tools(mcp: FastMCP, logger=None):
 
     @mcp.tool(
         title="企业微信群机器人-发送文本消息",

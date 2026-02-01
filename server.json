@@ -7,12 +7,12 @@
     "url": "https://github.com/aahl/mcp-notify",
     "source": "github"
   },
-  "version": "0.1.8",
+  "version": "0.1.9",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "mcp-notify",
-      "version": "0.1.8",
+      "version": "0.1.9",
       "transport": {"type": "stdio"},
       "environmentVariables": [
         {
@@ -86,7 +86,16 @@
     {
       "registryType": "oci",
       "identifier": "ghcr.io/aahl/mcp-notify:latest",
-      "transport": {"type": "stdio"}
+      "transport": {"type": "stdio"},
+      "environmentVariables": [
+        {
+          "name": "TRANSPORT",
+          "default": "stdio",
+          "description": "Transport protocol to use",
+          "format": "string",
+          "isSecret": false
+        }
+      ]
     }
   ]
 }
