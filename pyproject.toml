@@ -1,13 +1,14 @@
 [project]
 name = "mcp-notify"
-version = "0.1.9"
+version = "0.1.10"
 description = "MCP Server for notify"
 readme = "README.md"
 requires-python = ">=3.10"
 keywords = ["notify", "telegram", "weixin", "wework", "lark", "ntfy", "mcp", "llm"]
 license = { text = "MIT" }
 dependencies = [
-    "fastmcp>=2.0.0",
+    "fastmcp>=2.0.0,<3.0.0",
+    "requests>=2.0.0",
     "cachetools>=6.2.0",
     "python-telegram-bot>=22.0",
     "telegramify-markdown>=0.5",

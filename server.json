@@ -7,12 +7,12 @@
     "url": "https://github.com/aahl/mcp-notify",
     "source": "github"
   },
-  "version": "0.1.9",
+  "version": "0.1.10",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "mcp-notify",
-      "version": "0.1.9",
+      "version": "0.1.10",
       "transport": {"type": "stdio"},
       "environmentVariables": [
         {
