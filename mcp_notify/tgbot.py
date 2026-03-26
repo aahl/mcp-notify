@@ -13,13 +13,6 @@ TELEGRAM_BASE_URL = os.getenv("TELEGRAM_BASE_URL") or "https://api.telegram.org"
 TELEGRAM_MARKDOWN_V2 = "MarkdownV2"
 
 
-md_customize = telegramify_markdown.customize.get_runtime_config()
-md_customize.markdown_symbol.head_level_1 = "1️⃣"
-md_customize.markdown_symbol.head_level_2 = "2️⃣"
-md_customize.markdown_symbol.head_level_3 = "3️⃣"
-md_customize.markdown_symbol.head_level_4 = "4️⃣"
-
-
 def add_tools(mcp: FastMCP, logger=None):
     bot = Bot(
         TELEGRAM_BOT_TOKEN,
