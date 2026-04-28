@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/aahl-mcp-notify-badge.png)](https://mseep.ai/app/aahl-mcp-notify)
+
 # 💬 Notify MCP Server
 
 <!-- mcp-name: io.github.aahl/mcp-notify -->
